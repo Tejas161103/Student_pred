@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Student Performance Predictor</h1>
+        <form action="/predict" method="post">
+            <label>Study Time (1-4):</label>
+            <input type="number" name="studytime" min="1" max="4" required>
+
+            <label>Failures (0-4):</label>
+            <input type="number" name="failures" min="0" max="4" required>
+
+            <label>Absences:</label>
+            <input type="number" name="absences" min="0" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+            <h2>Prediction Result: {{ 'Pass 👍' if result == 1 else 'Fail 👎' }}</h2>
+            <div>{{ graph|safe }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
